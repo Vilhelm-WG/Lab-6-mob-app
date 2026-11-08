@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Каталог читають усі (включно з гостями), змінює лише адмін
+    match /books/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /categories/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Користувач може створити лише власний профіль з роллю "user"
+    match /users/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow create: if request.auth != null && request.auth.uid == uid
+                    && request.resource.data.role == 'user';
+      allow update, delete: if false;
+    }
+  }
+}
