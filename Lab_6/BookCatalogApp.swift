@@ -15,6 +15,6 @@ struct BookCatalogApp: App {
         WindowGroup {
             CatalogView()
                 .environmentObject(auth)
-        }
+        }f
     }
 }
