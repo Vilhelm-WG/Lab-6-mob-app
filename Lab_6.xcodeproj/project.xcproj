@@ -23,6 +23,7 @@
     { "kind": "folder", "path": "Lab_6", "target-membership": [ "Lab_6" ] },
     { "kind": "folder", "path": "Lab_6Tests", "target-membership": [ "Lab_6Tests" ] },
     { "kind": "folder", "path": "Lab_6UITests", "target-membership": [ "Lab_6UITests" ] },
+    { "kind": "group", "name": "Frameworks" },
     {
       "kind": "group",
       "name": "Products",
@@ -43,6 +44,21 @@
         "compile-sources",
         "frameworks",
         "resources",
+      ],
+      "package-product-members": [
+        {
+          "package": "firebase-ios-sdk",
+          "product-name": "FirebaseAuth",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "firebase-ios-sdk",
+          "product-name": "FirebaseCore",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "firebase-ios-sdk",
+          "product-name": "FirebaseFirestore",
+          "build-phase": { "build-phase": "frameworks" },
+        },
       ],
       "build-settings": {
         "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
